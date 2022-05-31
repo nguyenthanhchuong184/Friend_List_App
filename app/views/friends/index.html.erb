@@ -6,6 +6,7 @@
       <th>Email</th>
       <th>Phone</th>
       <th>Facebook</th>
+      <th>User Id</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,9 +18,15 @@
         <td><%= friend.email %></td>
         <td><%= friend.phone %></td>
         <td><%= friend.facebook %></td>
+        <td><%= friend.user_id %></td>
         <td><%= link_to 'Show', friend,class:"btn btn-success" %></td>
-        <td><%= link_to 'Edit', edit_friend_path(friend),class:"btn btn-dark" %></td>
-        <td><%= button_to 'Destroy', friend,:confirm => 'Are you sure?',:method => :delete,class:"btn btn-danger" %></td>
+        <% if friend.user == current_user %>
+          <td><%= link_to 'Edit', edit_friend_path(friend),class:"btn btn-dark" %></td>
+          <td><%= button_to 'Destroy', friend,:confirm => 'Are you sure?',:method => :delete,class:"btn btn-danger" %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
       </tr>
     <% end %>
   </table>
